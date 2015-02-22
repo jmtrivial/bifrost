@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<color-description>
+  <!-- remarque: utiliser quantifieurs flous, plusieurs couleurs séparées, et 
+  multicolor, camaieu, dégradé  -->
+  <hue>
+    <!-- brown and pink are variation of existing hues -->
+    <hue-name name="red">
+      <range min="" max="" />
+      <range min="" max="" />
+    </hue-name>
+    <hue-name name="orange">
+      <range min="" max="" />
+    </hue-name>
+    <hue-name name="yellow">
+      <range min="" max="" />
+    </hue-name>
+    <hue-name name="green">
+      <range min="" max="" />
+    </hue-name>
+    <hue-name name="cyan">
+      <range min="" max="" />
+    </hue-name>
+    <hue-name name="blue">
+      <range min="" max="" />
+    </hue-name>
+    <hue-name name="violet">
+      <range min="" max="" />
+    </hue-name>
+  </hue>
+  <saturation>
+    <saturation-name name="bright">
+      <range min="" max="" />
+    </saturation-name>
+    <saturation-name name="normal">
+      <range min="" max="" />
+    </saturation-name>
+    <saturation-name name="pale">
+      <range min="" max="" />
+    </saturation-name>
+    <saturation-name name="achromatic">
+      <range min="" max="" />
+    </saturation-name>
+  </saturation>
+  <lightness>
+    <lightness-name name="black">
+      <range min="" max="" />
+    </lightness-name>
+    <lightness-name name="dark">
+      <range min="" max="" />
+    </lightness-name>
+    <lightness-name name="normal">
+      <range min="" max="" />
+    </lightness-name>
+    <lightness-name name="light">
+      <range min="" max="" />
+    </lightness-name>
+    <lightness-name name="white">
+      <range min="" max="" />
+    </lightness-name>
+  </lightness>
+</color-description>

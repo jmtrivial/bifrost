@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<color-names id="standard" lang="french">
+    <translation en="red" tr="rouge" />
+    <translation en="orange" tr="orange" />
+    <translation en="yellow" tr="jaune" />
+    <translation en="green" tr="vert" />
+    <translation en="blue" tr="bleu" />
+    <translation en="violet" tr="violet" />
+    <translation en="black" tr="noir" />
+    <translation en="white" tr="blanc" />
+    <translation en="light" tr="clair" />
+    <translation en="dark" tr="foncé" />
+    <translation en="pale" tr="pâle" />
+    <translation en="bright" tr="vif" />
+    <rule hue="*" saturation="*" lightness="black,white">
+        <name-element name="tr(lightness)" />
+    </rule>
+    <rule hue="*" saturation="achromatic,pale" lightness="normal">
+        <name-element name="gris" />
+    </rule>
+    <rule hue="*" saturation="achromatic" lightness="dark,light">
+        <name-element name="gris" />
+        <name-element name="tr(lightness)" />
+    </rule>
+    <rule hue="bleu,vert" saturation="pale" lightness="dark,light">
+        <name-element name="gris" />
+        <name-element name="tr(hue)" />
+    </rule>
+    <rule hue="orange,jaune" saturation="pale" lightness="dark">
+        <name-element name="gris" />
+        <name-element name="beige" />
+    </rule>
+    <rule hue="orange,jaune" saturation="pale" lightness="light">
+        <name-element name="beige" />
+    </rule>
+    <rule hue="red" saturation="normal" lightness="light">
+        <name-element name="rose" />
+    </rule>
+    <rule hue="blue~green" saturation="normal" lightness="normal">
+        <!-- TODO: integrate saturation and normal -->
+        <name-element name="turquoise" />
+    </rule>
+    <rule hue="red" saturation="bright,pale" lightness="light">
+        <name-element name="rose" />
+        <name-element name="tr(saturation)" />
+    </rule>
+    <rule hue="orange,yellow" saturation="normal" lightness="dark">
+        <name-element name="marron" />
+    </rule>
+    <rule hue="orange,yellow" saturation="bright,pale" lightness="dark">
+        <name-element name="marron" />
+        <name-element name="tr(saturation)" />
+    </rule>
+    <rule hue="*" saturation="normal" lightness="normal">
+        <name-element name="tr(hue)" />
+    </rule>
+    <rule hue="*" saturation="normal" lightness="dark,light">
+        <name-element name="tr(hue)" />
+        <name-element name="tr(lightness)" />
+    </rule>
+    <rule hue="*" saturation="bright,pale" lightness="normal">
+        <name-element name="tr(hue)" />
+        <name-element name="tr(saturation)" />
+    </rule>
+    <!-- TODO: add supplementary colors, such as
+        vert pomme, vert bouteille (vert sapin),
+        jaune orangé, jaune poussin, jaune d'or
+        bordeaux, rose bonbon, rose fushia, orangé (un peu de rouge),
+        vert kaki, bleu nuit, bleu marine, bleu ciel, bleu roi, bleu canard
+        beige, couleur peau, blanc cassé
+    -->
+</color-names>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<color-names id="basic" lang="french" preprocessing="defuzzification-unary">
+  <translation en="red" tr="rouge" />
+  <translation en="orange" tr="orange" />
+  <translation en="yellow" tr="jaune" />
+  <translation en="green" tr="vert" />
+  <translation en="blue" tr="bleu" />
+  <translation en="violet" tr="violet" />
+  <translation en="black" tr="noir" />
+  <translation en="white" tr="blanc" />
+  <rule hue="*" saturation="*" lightness="black,white">
+    <name-element name="tr(lightness)" />
+  </rule>
+  <rule hue="*" saturation="achromatic,pale" lightness="dark,normal,light">
+    <name-element name="gris" />
+  </rule>
+  <rule hue="red" saturation="normal,bright,pale" lightness="light">
+    <name-element name="rose" />
+  </rule>
+  <rule hue="orange,yellow" saturation="normal,bright,pale" lightness="dark">
+    <name-element name="marron" />
+  </rule>
+  <rule hue="*" saturation="normal,bright,pale" lightness="dark,normal,light">
+    <name-element name="tr(hue)" />
+  </rule>
+</color-names>
