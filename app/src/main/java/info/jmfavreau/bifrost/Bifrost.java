@@ -1,5 +1,6 @@
 package info.jmfavreau.bifrost;
 
+import info.jmfavreau.bifrost.color.FuzzyColorRules;
 import info.jmfavreau.bifrost.util.SystemUiHider;
 
 import android.annotation.TargetApi;
@@ -113,6 +114,9 @@ public class Bifrost extends Activity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        // initialization of the FuzzyColorRules
+        //FuzzyColorRules.load(this);
     }
 
     @Override
