@@ -1,5 +1,6 @@
 package info.jmfavreau.bifrost.ui;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,41 +22,65 @@ import info.jmfavreau.bifrost.color.HSLColor;
  * Created by Jean-Marie Favreau on 23/02/15.
  */
 // https://github.com/jesperborgstrup/buzzingandroid/blob/master/src/com/buzzingandroid/ui/HSVColorPickerDialog.java
-public class HSLColorPicker extends LinearLayout implements View.OnClickListener {
+public class HSLColorPicker extends Fragment implements View.OnClickListener {
 
 
     private LightnessBarSelector ls;
     private SaturationBarSelector ss;
     private HueBarSelector hs;
     private ColorViewer cv;
-    private TextView tv;
+    private EditText tv;
 
     private HSLColor c;
 
+    public HSLColorPicker() {
+        super();
+
+    }
+
+
     public void onClick(View v) {
+        if (v.getId() == hs.getId()) {
+            c = hs.getColor();
+            ls.setColor(c);
+            ss.setColor(c);
+        }
+        else if (v.getId() == ss.getId()) {
+            c = ss.getColor();
+            ls.setColor(c);
+            hs.setColor(c);
+        }
+        else if (v.getId() == ls.getId()) {
+            c = ls.getColor();
+            ss.setColor(c);
+            hs.setColor(c);
+        }
+        update();
+    }
+
+    public void update() {
+
         ls.redraw();
         ss.redraw();
         hs.redraw();
         cv.setBackgroundColor(c.getIntColor());
-        String text = "h: " + String.valueOf(c.getHue()) + " s: " + String.valueOf(c.getSaturation()) + " l: " + String.valueOf(c.getLightness());
+        String text = String.format( "h: %.4f, s: %4f, l: %4f\nr: %.4f, g: %.4f, b: %.4f",
+                c.getHue(), c.getSaturation(), c.getLightness(),
+                c.getRed(), c.getGreen(), c.getBlue());
         tv.setText(text.toString());
     }
 
-    public HSLColorPicker(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        LayoutInflater layoutInflater = (LayoutInflater)context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        layoutInflater.inflate(R.layout.hsl_color_picker, this);
+
+    @Override
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        View view = inflater.inflate(R.layout.hsl_color_picker, container, false);
 
         c = HSLColor.red();
-    }
-
-    protected void onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        hs = (HueBarSelector) findViewById(R.id.myHueSelector);
-        ss = (SaturationBarSelector) findViewById(R.id.mySaturationSelector);
-        ls = (LightnessBarSelector) findViewById(R.id.myLightnessSelector);
-        cv = (ColorViewer) findViewById(R.id.myColorViewer);
-        tv = (TextView) findViewById(R.id.myTextColor);
+        hs = (HueBarSelector) view.findViewById(R.id.myHueSelector);
+        ss = (SaturationBarSelector) view.findViewById(R.id.mySaturationSelector);
+        ls = (LightnessBarSelector) view.findViewById(R.id.myLightnessSelector);
+        cv = (ColorViewer) view.findViewById(R.id.myColorViewer);
+        tv = (EditText) view.findViewById(R.id.myTextColor);
 
         ss.setColorChangedListener(this);
         hs.setColorChangedListener(this);
@@ -62,6 +88,10 @@ public class HSLColorPicker extends LinearLayout implements View.OnClickListener
         ss.setColor(c);
         hs.setColor(c);
         ls.setColor(c);
+
+        update();
+
+        return view;
     }
 
 

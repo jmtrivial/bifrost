@@ -3,9 +3,11 @@ package info.jmfavreau.bifrost.ui;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -47,7 +49,12 @@ abstract public class ColorBarSelector extends View {
         this.color = c;
     }
 
+    public HSLColor getColor() {
+        return this.color;
+    }
+
     public void redraw() {
+        redrawBitmap();
         invalidate();
     }
 
@@ -61,16 +68,16 @@ abstract public class ColorBarSelector extends View {
         switch ( action ) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-/*                int x = Math.max( 0, Math.min( bitmap.getWidth() - 1, (int)event.getX() ) );
+                int x = Math.max( 0, Math.min( bitmap.getWidth() - 1, (int)event.getX() ) );
                 float value = x / (float)bitmap.getWidth();
-                if ( colorHsv[2] != value ) {
-                    colorHsv[2] = value;
-                    if ( listener != null ) {
-                        listener.colorSelected( Color.HSVToColor( colorHsv ) );
+                if (getValueFromHSLColor() != value) {
+                    setColorFromValue(value);
+                    if (listener != null) {
+                        listener.onClick(this);
                     }
                     redrawBitmap();
                     invalidate();
-                }*/
+                }
                 return true;
         }
         return super.onTouchEvent(event);
@@ -97,27 +104,51 @@ abstract public class ColorBarSelector extends View {
     }
 
     void redrawBitmap() {
-        int w = rect.width();
-        int h = rect.height();
-        int pixels[] = new int[w * h];
-        HSLColor c_tmp = color;
+        if (bitmap != null) {
+            int w = rect.width();
+            int h = rect.height();
+            int pixels[] = new int[w * h];
+            HSLColor c_tmp = new HSLColor(color);
 
-        for(int i = 0; i != w; ++i) {
-            int v = updateColorFromCursorValue(c_tmp, (double) i / (w - 1));
-            for(int j = 0; j != h; ++j) {
-                pixels[i * h + j] = v;
+            for(int i = 0; i != w; ++i) {
+                int v = updateColorFromCursorValue(c_tmp, (double) i / (w - 1));
+                for(int j = 0; j != h; ++j) {
+                    pixels[j * w + i] = v;
+                }
             }
-        }
 
-        drawCursor();
+            drawCursor(pixels, w, h);
+        }
     }
 
     protected abstract int updateColorFromCursorValue(HSLColor c, double v);
     protected abstract double getValueFromHSLColor();
     protected abstract void setColorFromValue(double c);
 
-    void drawCursor() {
-        // TODO
+    private static int blendColors(int color1, int color2, float ratio) {
+        final float inverseRation = 1f - ratio;
+        float r = (Color.red(color1) * ratio) + (Color.red(color2) * inverseRation);
+        float g = (Color.green(color1) * ratio) + (Color.green(color2) * inverseRation);
+        float b = (Color.blue(color1) * ratio) + (Color.blue(color2) * inverseRation);
+        return Color.rgb((int) r, (int) g, (int) b);
+    }
+
+    void drawCursor(int pixels[], int w, int h) {
+        double v = getValueFromHSLColor();
+        int c = (int)(v * (double)w);
+
+        for(int j = 0; j != pointerLength; ++j) {
+            for(int i = c - pointerLength + j; i != c + pointerLength + 1 - j; ++i) {
+                if (i >= 0 && i < w) {
+                     pixels[j * w + i] = blendColors(pixels[j * w + i], Color.WHITE, (float)0.5);
+                     pixels[(h - j - 1) * w + i] = blendColors(pixels[j * w + i], Color.WHITE, (float)0.5);
+                }
+            }
+        }
+
+
+
+        bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
 
         invalidate();
     }

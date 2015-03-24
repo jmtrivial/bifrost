@@ -29,7 +29,14 @@ public class HueBarSelector extends ColorBarSelector {
         color.setHue(c);
     }
 
+    @Override
+    public void redraw() {
+        invalidate();
+    }
+
     protected int updateColorFromCursorValue(HSLColor c, double v) {
+        c.setLightness(.5);
+        c.setSaturation(1.);
         c.setHue(v);
         return c.getIntColor();
     }
