@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import info.jmfavreau.bifrost.R;
+import info.jmfavreau.bifrost.color.FuzzyColor;
 import info.jmfavreau.bifrost.color.HSLColor;
 
 /**
@@ -64,9 +65,12 @@ public class HSLColorPicker extends Fragment implements View.OnClickListener {
         ss.redraw();
         hs.redraw();
         cv.setBackgroundColor(c.getIntColor());
-        String text = String.format( "h: %.4f, s: %4f, l: %4f\nr: %.4f, g: %.4f, b: %.4f",
+
+        FuzzyColor f = new FuzzyColor(c);
+        f.defuzzificationUnary();
+        String text = String.format( "h: %.4f, s: %4f, l: %4f\nr: %.4f, g: %.4f, b: %.4f\ncolor: %s",
                 c.getHue(), c.getSaturation(), c.getLightness(),
-                c.getRed(), c.getGreen(), c.getBlue());
+                c.getRed(), c.getGreen(), c.getBlue(), f.toString());
         tv.setText(text.toString());
     }
 

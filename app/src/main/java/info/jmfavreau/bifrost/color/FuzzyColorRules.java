@@ -3,11 +3,8 @@ package info.jmfavreau.bifrost.color;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
-import android.util.Xml;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -16,6 +13,8 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import info.jmfavreau.bifrost.R;
+
+import static java.sql.DriverManager.println;
 
 /**
  * Created by Jean-Marie Favreau on 22/02/15.
@@ -28,6 +27,9 @@ public class FuzzyColorRules {
     private static FuzzyColorRules instance = null;
 
     private FuzzyColorRules(Activity activity) throws XmlPullParserException, IOException {
+        hRules = new ArrayList<>();
+        sRules = new ArrayList<>();
+        lRules = new ArrayList<>();
         loadRules(activity);
     }
 
@@ -68,20 +70,20 @@ public class FuzzyColorRules {
                 double min0 = parser.getAttributeFloatValue(null, "min0", -1);
                 double min1 = parser.getAttributeFloatValue(null, "min1", -1);
                 if (max0 >= 0 && max1 >= 0 && min0 >= 0 && min1 >= 0)
-                    addRule(current, name, min0, min1, max1, min0);
+                    addRule(current, name, min0, min1, max1, max0);
             }
             eventType = parser.next();
         }
     }
 
-    private void addRule(String current, String name, double min0, double min1, double max1, double min01) {
+    private void addRule(String current, String name, double min0, double min1, double max1, double max0) {
         if (current.equals("hue"))
-            hRules.add(new FuzzyRule(min0, min1, max1, min0, name));
+            hRules.add(new FuzzyRule(min0, min1, max1, max0, name));
         else if (current.equals("saturation"))
-            sRules.add(new FuzzyRule(min0, min1, max1, min0, name));
+            sRules.add(new FuzzyRule(min0, min1, max1, max0, name));
         else {
             assert current.equals("lightness");
-            lRules.add(new FuzzyRule(min0, min1, max1, min0, name));
+            lRules.add(new FuzzyRule(min0, min1, max1, max0, name));
         }
     }
 
@@ -121,7 +123,7 @@ public class FuzzyColorRules {
     }
 
     private List<FuzzyColorElement> getFuzzyDescription(double v, List<FuzzyRule> rules) {
-        List<FuzzyColorElement> result = new ArrayList<FuzzyColorElement>();
+        List<FuzzyColorElement> result = new ArrayList<>();
         Iterator i = rules.iterator();
         while(i.hasNext()) {
             FuzzyRule r = (FuzzyRule)i.next();

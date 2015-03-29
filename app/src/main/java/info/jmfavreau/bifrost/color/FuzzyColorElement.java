@@ -24,4 +24,8 @@ public class FuzzyColorElement {
             this.value = value;
         this.name = name;
     }
+    public String toString() {
+        String text = String.format( "%s (%.4f)", name, value);
+        return text;
+    }
 }

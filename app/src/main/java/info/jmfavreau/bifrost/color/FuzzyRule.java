@@ -1,5 +1,6 @@
 package info.jmfavreau.bifrost.color;
 
+
 /**
  * Created by jm on 22/02/15.
  */
@@ -20,7 +21,7 @@ public class FuzzyRule {
      */
     private static Boolean IsBetween(double a, double b, double v) {
         return ((a <= b) && (a <= v) && (v <= b)) ||
-                ((a >= b) && ((a >= v) || (v >= b)));
+                ((a >= b) && ((a <= v) || (v <= b)));
     }
 
     public FuzzyRule(double min0, double min1, double max1, double max0, String name) {
@@ -35,19 +36,28 @@ public class FuzzyRule {
     /**
      * Return value of the membership function describe by the current fuzzy rule at abscissa
      * {@code in}
-     * @param in
+     * @param inv
      * @return membership value (between 0 and 1)
      */
-    public double getMembershipValue(double in) {
-        if (IsBetween(max0, min0, in))
-            return 0.;
-        else if (IsBetween(min1, max1, in))
+    public double getMembershipValue(double inv) {
+        if (IsBetween(max0, min0, inv)) {
+            if (max0 == min0)
+                return 1.;
+            else
+                return 0.;
+        }
+        else if (IsBetween(min1, max1, inv)) {
             return 1.;
-        else if (IsBetween(min0, min1, in))
-            return Interpolate(min0, 0., min1, 1., in);
+        }
+        else if (IsBetween(min0, min1, inv)) {
+            return Interpolate(min0, 0., min1, 1., inv);
+        }
         else {
-            assert IsBetween(max1, max0, in);
-            return Interpolate(max1, 1., max0, 0., in);
+            assert IsBetween(max1, max0, inv);
+            if (max1 == max0)
+                return 1.;
+            else
+                return Interpolate(max1, 1., max0, 0., inv);
         }
     }
 
