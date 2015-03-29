@@ -1,60 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <color-description>
-  <!-- remarque: utiliser quantifieurs flous, plusieurs couleurs séparées, et 
-  multicolor, camaieu, dégradé  -->
   <hue>
     <!-- brown and pink are variation of existing hues -->
     <fuzzy-label name="red">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.9200" min1="0.9571" max1="0.0190" max0="0.0733" />
     </fuzzy-label>
     <fuzzy-label name="orange">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.0524" min1="0.0533" max1="0.0790" max0="0.1105" />
     </fuzzy-label>
     <fuzzy-label name="yellow">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.0695" min1="0.1371" max1="0.1762" max0="0.2438" />
     </fuzzy-label>
     <fuzzy-label name="green">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.1629" min1="0.2086" max1="0.4143" max0="0.4714" />
     </fuzzy-label>
     <fuzzy-label name="cyan">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.4381" min1="0.4676" max1="0.981" max0="0.5324" />
     </fuzzy-label>
     <fuzzy-label name="blue">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.4800" min1="0.5210" max1="0.7143" max0="0.7610" />
     </fuzzy-label>
     <fuzzy-label name="violet">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.7286" min1="0.7771" max1="0.8210" max0="0.92300" />
     </fuzzy-label>
   </hue>
   <saturation>
     <fuzzy-label name="bright">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.7352" min1="0.9019" max1="1.0" max0="1.0" />
     </fuzzy-label>
     <fuzzy-label name="normal">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+       <fuzzy-range min0="0.4819" min1="0.5704" max1="0.8133" max0="0.9752" />
     </fuzzy-label>
     <fuzzy-label name="pale">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+       <fuzzy-range min0="0.1476" min1="0.2552" max1="0.5200" max0="0.6762" />
     </fuzzy-label>
     <fuzzy-label name="achromatic">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.0" min1="0.0" max1="0.068" max0="0.2181" />
     </fuzzy-label>
   </saturation>
   <lightness>
     <fuzzy-label name="black">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.0" min1="0.0" max1="0.0685" max0="0.1676" />
     </fuzzy-label>
     <fuzzy-label name="dark">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.05333" min1="0.0914" max1="0.3057" max0="0.4190" />
     </fuzzy-label>
     <fuzzy-label name="normal">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.3580" min1="0.4266" max1="0.5457" max0="0.6314" />
     </fuzzy-label>
     <fuzzy-label name="light">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.5971" min1="0.7342" max1="0.8390" max0="0.9742" />
     </fuzzy-label>
     <fuzzy-label name="white">
-      <fuzzy-range min0="" min1="" max1="" max0="" />
+      <fuzzy-range min0="0.7533" min1="0.9429" max1="1.0" max0="1.0" />
     </fuzzy-label>
   </lightness>
 </color-description>
