@@ -40,24 +40,27 @@ public class FuzzyRule {
      * @return membership value (between 0 and 1)
      */
     public double getMembershipValue(double inv) {
-        if (IsBetween(max0, min0, inv)) {
+        if (IsBetween(min0, min1, inv)) {
+            if (min0 == min1)
+                return 1.;
+            else
+                return Interpolate(min0, 0., min1, 1., inv);
+        }
+        else if (IsBetween(max1, max0, inv)) {
+            if (max1 == max0)
+                return 1.;
+            else
+                return Interpolate(max1, 1., max0, 0., inv);
+        }
+        else if (IsBetween(max0, min0, inv)) {
             if (max0 == min0)
                 return 1.;
             else
                 return 0.;
         }
-        else if (IsBetween(min1, max1, inv)) {
-            return 1.;
-        }
-        else if (IsBetween(min0, min1, inv)) {
-            return Interpolate(min0, 0., min1, 1., inv);
-        }
         else {
-            assert IsBetween(max1, max0, inv);
-            if (max1 == max0)
+            assert (IsBetween(min1, max1, inv));
                 return 1.;
-            else
-                return Interpolate(max1, 1., max0, 0., inv);
         }
     }
 

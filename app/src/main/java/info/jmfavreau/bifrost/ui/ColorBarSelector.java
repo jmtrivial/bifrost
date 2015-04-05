@@ -69,7 +69,7 @@ abstract public class ColorBarSelector extends View {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
                 int x = Math.max( 0, Math.min( bitmap.getWidth() - 1, (int)event.getX() ) );
-                float value = x / (float)bitmap.getWidth();
+                float value = x / ((float)bitmap.getWidth() - 1);
                 if (getValueFromHSLColor() != value) {
                     setColorFromValue(value);
                     if (listener != null) {
