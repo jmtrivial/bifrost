@@ -24,8 +24,10 @@ public class FuzzyColorElement {
             this.value = value;
         this.name = name;
     }
-    public String toString() {
-        String text = String.format( "%s (%.4f)", name, value);
-        return text;
+    public String toString(Boolean values) {
+        if (values)
+            return String.format( "%s (%.4f)", name, value);
+        else
+            return String.format( "%s", name);
     }
 }

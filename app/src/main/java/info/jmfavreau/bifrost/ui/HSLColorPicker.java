@@ -70,7 +70,7 @@ public class HSLColorPicker extends Fragment implements View.OnClickListener {
         f.defuzzificationUnary();
         String text = String.format( "h: %.4f, s: %4f, l: %4f\nr: %.4f, g: %.4f, b: %.4f\ncolor: %s",
                 c.getHue(), c.getSaturation(), c.getLightness(),
-                c.getRed(), c.getGreen(), c.getBlue(), f.toString());
+                c.getRed(), c.getGreen(), c.getBlue(), f.toString(false));
         tv.setText(text.toString());
     }
 

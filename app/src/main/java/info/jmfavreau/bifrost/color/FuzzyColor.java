@@ -73,18 +73,18 @@ public class FuzzyColor {
         return result;
     }
 
-    public String toString() {
+    public String toString(Boolean values) {
         String r = "";
-        String h = toStringComponent(hue);
+        String h = toStringComponent(hue, values);
         if (h.compareTo("") != 0);
             r = h;
-        String s = toStringComponent(saturation);
+        String s = toStringComponent(saturation, values);
         if (s.compareTo("") != 0) {
             if (r.compareTo("") != 0)
                 r += ", ";
             r += s;
         }
-        String l = toStringComponent(lightness);
+        String l = toStringComponent(lightness, values);
         if (l.compareTo("") != 0) {
             if (r.compareTo("") != 0)
                 r += ", ";
@@ -96,14 +96,14 @@ public class FuzzyColor {
         return r;
     }
 
-    private static String toStringComponent(List<FuzzyColorElement> comp) {
+    private static String toStringComponent(List<FuzzyColorElement> comp, Boolean values) {
         String r = "";
         ListIterator<FuzzyColorElement> i = comp.listIterator();
         while (i.hasNext()) {
             FuzzyColorElement e = i.next();
             if (r.compareTo("") != 0)
                 r += ", ";
-            r += e.toString();
+            r += e.toString(values);
         }
         return r;
     }
