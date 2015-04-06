@@ -6,7 +6,7 @@ The aim of this project is to develop an opensource series of software for smart
 
 Bifröst is distributed under the [GPL v3 or later license](https://www.gnu.org/copyleft/gpl.html).
 
-## Color-to-speech application
+## The Color-to-speech application
 
 The first developped tool is an Android application that you can use to know the color of an object, using image processing and speech synthesis. Here are the main steps of the processings of the application:
 
@@ -22,6 +22,8 @@ We motivate this project by the following points
 * opensource software (several closed source software are existing in this domain, and usually expensive)
 * ready for internationalization (the semantic colors are defined for each language)
 * easily tunable (the RGB to semantic system does not use lookup tables, but logic rules that is a human friendly way to do it)
+
+More details about the recent developments of the color-to-speech application on the dedicated webpage: [Color-to-Speech details](website/ColorToSpeechDetails.md)
 
 ## Future tools
 
