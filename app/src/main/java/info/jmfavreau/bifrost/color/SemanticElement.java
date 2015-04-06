@@ -35,7 +35,6 @@ public class SemanticElement {
             if (comp == null)
                 return SemanticColor.getUnknownName();
             else {
-                Log.w("traduction", comp.getName() + " donne " + SemanticColorRules.translate(comp.getName()));
                 return SemanticColorRules.translate(comp.getName());
             }
         }

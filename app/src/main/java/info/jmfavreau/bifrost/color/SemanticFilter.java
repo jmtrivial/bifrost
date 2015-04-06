@@ -59,12 +59,10 @@ public class SemanticFilter {
     public boolean match(List<FuzzyColorElement> components) {
         if (kind == Operator.final_node) {
             if (node.equals("*")) {
-                Log.w("Bifrost", "C'est un , qui march");
                 return true;
             }
             FuzzyColorElement cc = FuzzyColorElement.getMainComponent(components);
             if (cc.getName().equals(node)) {
-                Log.w("Bifrost", "C'est un simple qui march");
                 return true;
             }
             return false;
@@ -73,7 +71,6 @@ public class SemanticFilter {
             assert(subfilters != null);
             for (SemanticFilter f : subfilters)
                 if (f.match(components)) {
-                    Log.w("Bifrost", "C'est un , qui march");
                     return true;
                 }
             return false;
@@ -101,7 +98,6 @@ public class SemanticFilter {
             for(Double v: values)
                 if (Math.abs(v - mean) > 0.25)
                     return false;
-            Log.w("Bifrost", "C'est un ~ qui march");
             return true;
         }
         return false;
