@@ -20,3 +20,9 @@ An [xml file](../app/src/main/res/xml/colors.xml) and the corresponding java pro
 
 In Bifröst, a semantic color is a list of words that are describing the color for a human. This semantic description is deduced from a fuzzy colors using some rules defined for each language. A rule is defined by an expression on each of the three components of the color (hue, saturation, lightness), and by a list of elements that will become words after consolidation.
 
+Several version has been introduced:
+* [Basic color names in English](../app/src/main/res/xml/basic_color_names.xml)
+* [Basic color names in French](../app/src/main/res/xml-fr/basic_color_names.xml)
+* [Standard color names in English](../app/src/main/res/xml/standard_color_names.xml)
+* [Standard color names in French](../app/src/main/res/xml-fr/standard_color_names.xml)
+
