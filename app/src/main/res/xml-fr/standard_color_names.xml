@@ -126,6 +126,31 @@
             <name-element name="tr(lightness)" />
         </result>
     </rule>
+    <rule hue="red~orange" saturation="*" lightness="*">
+        <result>
+            <name-element name="rouge orangé" />
+        </result>
+    </rule>
+    <rule hue="yellow~orange" saturation="*" lightness="*">
+        <result>
+            <name-element name="jaune orangé" />
+        </result>
+    </rule>
+    <rule hue="yellow~green" saturation="*" lightness="*">
+        <result>
+            <name-element name="vert-jaune" />
+        </result>
+    </rule>
+    <rule hue="green~cyan" saturation="*" lightness="*">
+        <result>
+            <name-element name="vert-bleu" />
+        </result>
+    </rule>
+    <rule hue="cyan~blue" saturation="*" lightness="*">
+        <result>
+            <name-element name="bleu-vert" />
+        </result>
+    </rule>
 
     <!-- default rule -->
     <rule hue="*" saturation="*" lightness="*">
