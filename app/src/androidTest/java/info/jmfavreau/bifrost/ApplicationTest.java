@@ -41,6 +41,6 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
     }
 
     public void testFuzzyColors() {
-        FuzzyColor c1 = new FuzzyColor(0., 0., 0.);
+        FuzzyColor c1 = FuzzyColor.fromRGB(0, 0, 0);
     }
 }
