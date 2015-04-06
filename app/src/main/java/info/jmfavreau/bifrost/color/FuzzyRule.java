@@ -1,6 +1,8 @@
 package info.jmfavreau.bifrost.color;
 
 
+import android.util.Log;
+
 /**
  * Created by jm on 22/02/15.
  */
@@ -20,8 +22,9 @@ public class FuzzyRule {
      * @return true if v is in the [a, b] interval
      */
     private static Boolean IsBetween(double a, double b, double v) {
-        return ((a <= b) && (a <= v) && (v <= b)) ||
-                ((a >= b) && ((a <= v) || (v <= b)));
+        return ((a == b) && (a == v)) ||
+                ((a < b) && (a <= v) && (v <= b)) ||
+                ((a > b) && ((a <= v) || (v <= b)));
     }
 
     public FuzzyRule(double min0, double min1, double max1, double max0, String name) {
@@ -60,7 +63,7 @@ public class FuzzyRule {
         }
         else {
             assert (IsBetween(min1, max1, inv));
-                return 1.;
+            return 1.;
         }
     }
 

@@ -18,6 +18,8 @@ import android.widget.TextView;
 import info.jmfavreau.bifrost.R;
 import info.jmfavreau.bifrost.color.FuzzyColor;
 import info.jmfavreau.bifrost.color.HSLColor;
+import info.jmfavreau.bifrost.color.SemanticColor;
+import info.jmfavreau.bifrost.color.SemanticColorRules;
 
 /**
  * Created by Jean-Marie Favreau on 23/02/15.
@@ -67,10 +69,11 @@ public class HSLColorPicker extends Fragment implements View.OnClickListener {
         cv.setBackgroundColor(c.getIntColor());
 
         FuzzyColor f = new FuzzyColor(c);
+        SemanticColor s = SemanticColorRules.toSemantic(f);
         f.defuzzificationUnary();
-        String text = String.format( "h: %.4f, s: %4f, l: %4f\nr: %.4f, g: %.4f, b: %.4f\ncolor: %s",
+        String text = String.format( "h: %.4f, s: %4f, l: %4f\nr: %.4f, g: %.4f, b: %.4f\nfuzzy: %s\nsemantic: %s",
                 c.getHue(), c.getSaturation(), c.getLightness(),
-                c.getRed(), c.getGreen(), c.getBlue(), f.toString(false));
+                c.getRed(), c.getGreen(), c.getBlue(), f.toString(true), s.toString());
         tv.setText(text.toString());
     }
 

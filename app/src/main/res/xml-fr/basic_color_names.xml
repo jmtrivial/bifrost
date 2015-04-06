@@ -6,6 +6,7 @@
   <translation en="green" tr="vert" />
   <translation en="blue" tr="bleu" />
   <translation en="violet" tr="violet" />
+  <translation en="cyan" tr="turquoise" />
   <translation en="black" tr="noir" />
   <translation en="white" tr="blanc" />
   <rule hue="*" saturation="*" lightness="black,white">

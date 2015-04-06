@@ -171,7 +171,7 @@ public class HSLColor {
             rgb[0] = x;
             rgb[2] = c;
         }
-        else if (5 <= hp && hp < 6) {
+        else if (5 <= hp && hp <= 6) {
             rgb[0] = c;
             rgb[2] = x;
         }

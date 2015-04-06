@@ -15,7 +15,7 @@ public class Bifrost extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FuzzyColorRules.load(this);
-        SemanticColorRules.loadDefault(this);
+        SemanticColorRules.load(this, "standard");
         setContentView(R.layout.activity_bifrost);
     }
 

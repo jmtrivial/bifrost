@@ -2,6 +2,7 @@ package info.jmfavreau.bifrost.color;
 
 import android.content.res.Resources;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -14,6 +15,13 @@ public class FuzzyColor {
     private List<FuzzyColorElement> saturation;
     private List<FuzzyColorElement> lightness;
     private HSLColor color;
+
+    private FuzzyColor(FuzzyColor c) {
+        this.hue = c.hue;
+        this.saturation = c.saturation;
+        this.lightness = c.lightness;
+        this.color = c.color;
+    }
 
     public FuzzyColor(HSLColor c) throws Resources.NotFoundException {
         color = c;
@@ -108,4 +116,31 @@ public class FuzzyColor {
         return r;
     }
 
+    public List<FuzzyColorElement> getHueComponent() {
+        return hue;
+    }
+    public List<FuzzyColorElement> getSaturationComponent() {
+        return saturation;
+    }
+    public List<FuzzyColorElement> getLightnessComponent() {
+        return lightness;
+    }
+
+    public FuzzyColor getDefuzzificationUnary() {
+        FuzzyColor c = new FuzzyColor(this);
+        c.defuzzificationUnary();
+        return c;
+    }
+
+    public FuzzyColorElement getMainHueComponent() {
+        return FuzzyColorElement.getMainComponent(hue);
+    }
+
+    public FuzzyColorElement getMainSaturationComponent() {
+        return FuzzyColorElement.getMainComponent(saturation);
+    }
+
+    public FuzzyColorElement getMainLightnessComponent() {
+        return FuzzyColorElement.getMainComponent(lightness);
+    }
 }

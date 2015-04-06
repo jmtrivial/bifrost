@@ -1,5 +1,9 @@
 package info.jmfavreau.bifrost.color;
 
+import android.util.Log;
+
+import java.util.List;
+
 /**
  * Created by jm on 22/02/15.
  */
@@ -29,5 +33,16 @@ public class FuzzyColorElement {
             return String.format( "%s (%.4f)", name, value);
         else
             return String.format( "%s", name);
+    }
+
+    public static FuzzyColorElement getMainComponent(List<FuzzyColorElement> list) {
+        double v = -1;
+        FuzzyColorElement result = null;
+        for(FuzzyColorElement e: list)
+            if (e.getValue() > v) {
+                v = e.getValue();
+                result = e;
+            }
+        return result;
     }
 }

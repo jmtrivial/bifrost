@@ -2,5 +2,4 @@
 <namespaces lang="french">
     <namespace id="basic" name="simplifié" default="true" />
     <namespace id="standard" name="standard" />
-    <namespace id="extended" name="étendu" />
 </namespaces>

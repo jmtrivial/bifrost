@@ -33,11 +33,11 @@ public class SemanticColorRules {
     private List<SemanticRule> rules = null;
     private String preprocessing = null;
 
-    private SemanticColorRules(Activity activity, String nspace) throws XmlPullParserException, IOException {
+    private SemanticColorRules(Activity activity, String nspace) throws Exception {
         loadRules(activity, nspace);
     }
 
-    private void loadRules(Activity activity, String nspace) throws IOException, XmlPullParserException {
+    private void loadRules(Activity activity, String nspace) throws Exception {
         String idNspace = getIDFromNameSpace(nspace);
         if (idNspace.equals(namespace))
             return;
@@ -46,7 +46,9 @@ public class SemanticColorRules {
         rules = new ArrayList<>();
 
         Resources res = activity.getResources();
-        int xmlID = res.getIdentifier(idNspace + "_color_names", "xml", activity.getPackageName());
+        Log.w("file", idNspace + "_color_names.xml");
+        String name = idNspace + "_color_names";
+        int xmlID = res.getIdentifier(name, "xml", activity.getPackageName());
         if (xmlID == 0)
             throw new FileNotFoundException();
         XmlResourceParser parser = res.getXml(xmlID);
@@ -97,8 +99,9 @@ public class SemanticColorRules {
             }
             catch (XmlPullParserException e) {
                 Log.e("SemanticColorRules", "XML pull parser exception");
-            }
-            finally {
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
             }
         }
         else {
@@ -110,8 +113,9 @@ public class SemanticColorRules {
             }
             catch (XmlPullParserException e) {
                 Log.e("SemanticColorRules", "XML pull parser exception");
-            }
-            finally {
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
             }
         }
     }
@@ -186,5 +190,29 @@ public class SemanticColorRules {
         }
 
 
+    }
+
+
+    private SemanticColor toSemanticInternal(FuzzyColor color) {
+        FuzzyColor realColor = color;
+        if (preprocessing != null) {
+            if (preprocessing.equals("defuzzification-unary")) {
+                realColor = color.getDefuzzificationUnary();
+            }
+        }
+        for(SemanticRule r: rules) {
+            if (r.accept(realColor)) {
+                return r.toSemanticColor(realColor);
+            }
+        }
+        return SemanticColor.unknownColor();
+    }
+
+    public static SemanticColor toSemantic(FuzzyColor color) {
+        return instance.toSemanticInternal(color);
+    }
+
+    public static String translate(String value) {
+        return instance.translations.get(value);
     }
 }

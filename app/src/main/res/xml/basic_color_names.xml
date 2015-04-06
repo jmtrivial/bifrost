@@ -6,21 +6,34 @@
     <translation en="green" tr="green" />
     <translation en="blue" tr="blue" />
     <translation en="violet" tr="violet" />
+    <translation en="cyan" tr="cyan" />
     <translation en="black" tr="black" />
     <translation en="white" tr="white" />
     <rule hue="*" saturation="*" lightness="black,white">
-        <name-element name="tr(lightness)" />
+        <result>
+            <name-element name="tr(lightness)" />
+        </result>
     </rule>
-    <rule hue="*" saturation="achromatic,pale" lightness="dark,normal,light">
-        <name-element name="grey" />
+    <rule>
+        <match hue="*" saturation="achromatic" lightness="dark,normal,light" />
+        <result>
+            <name-element name="grey" />
+        </result>
     </rule>
     <rule hue="red" saturation="normal,bright,pale" lightness="light">
-        <name-element name="pink" />
+        <result>
+            <name-element name="pink" />
+        </result>
     </rule>
     <rule hue="orange,yellow" saturation="normal,bright,pale" lightness="dark">
-        <name-element name="brown" />
+        <result>
+            <name-element name="brown" />
+        </result>
     </rule>
-    <rule hue="*" saturation="normal,bright,pale" lightness="dark,normal,light">
-        <name-element name="tr(hue)" />
+    <!-- default rule -->
+    <rule hue="*" saturation="*" lightness="*">
+        <result>
+            <name-element name="tr(hue)" />
+        </result>
     </rule>
 </color-names>

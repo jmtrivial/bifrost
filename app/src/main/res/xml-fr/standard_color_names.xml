@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<color-names id="standard" lang="french" preprocessing="defuzzification-unary">
+<color-names id="standard" lang="french">
   <translation en="red" tr="rouge" />
   <translation en="orange" tr="orange" />
   <translation en="yellow" tr="jaune" />
   <translation en="green" tr="vert" />
   <translation en="blue" tr="bleu" />
+  <translation en="cyan" tr="turquoise" />
   <translation en="violet" tr="violet" />
   <translation en="black" tr="noir" />
   <translation en="white" tr="blanc" />
@@ -13,49 +14,123 @@
   <translation en="pale" tr="pâle" />
   <translation en="bright" tr="vif" />
   <rule hue="*" saturation="*" lightness="black,white">
-    <name-element name="tr(lightness)" />
+      <result>
+            <name-element name="tr(lightness)" />
+      </result>
   </rule>
-  <rule hue="*" saturation="achromatic,pale" lightness="normal">
-    <name-element name="gris" />
-  </rule>
+    <rule hue="orange,yellow" saturation="pale" lightness="dark">
+        <result>
+            <name-element name="beige" />
+            <name-element name="foncé" />
+        </result>
+    </rule>
+    <rule hue="orange,yellow" saturation="pale" lightness="light">
+        <result>
+            <name-element name="beige" />
+        </result>
+    </rule>
   <rule hue="*" saturation="achromatic" lightness="dark,light">
-    <name-element name="gris" />
-    <name-element name="tr(lightness)" />
+      <result>
+        <name-element name="gris" />
+        <name-element name="tr(lightness)" />
+      </result>
   </rule>
-  <rule hue="bleu,vert" saturation="pale" lightness="dark,light">
-    <name-element name="gris" />
-    <name-element name="tr(hue)" />
+    <rule hue="red" saturation="pale" lightness="normal">
+        <result>
+            <name-element name="gris" />
+            <name-element name="rose" />
+        </result>
+    </rule>
+    <rule hue="red" saturation="pale" lightness="dark,light">
+        <result>
+            <name-element name="gris" />
+            <name-element name="rose" />
+            <name-element name="tr(lightness)" />
+        </result>
+    </rule>
+  <rule hue="*" saturation="pale" lightness="normal">
+        <result>
+            <name-element name="gris" />
+            <name-element name="tr(hue)" />
+        </result>
   </rule>
-  <rule hue="orange,jaune" saturation="pale" lightness="dark">
-    <name-element name="gris" />
-    <name-element name="beige" />
+    <rule hue="*" saturation="pale" lightness="dark,light">
+        <result>
+            <name-element name="gris" />
+            <name-element name="tr(hue)" />
+            <name-element name="tr(lightness)" />
+        </result>
+    </rule>
+    <rule hue="*" saturation="achromatic,pale" lightness="normal">
+        <result>
+            <name-element name="gris" />
+        </result>
+    </rule>
+    <rule hue="red" saturation="normal,bright" lightness="light~white">
+        <result>
+            <name-element name="rose" />
+            <name-element name="clair" />
+        </result>
+    </rule>
+  <rule hue="red" saturation="normal,bright" lightness="light">
+      <result>
+        <name-element name="rose" />
+      </result>
   </rule>
-  <rule hue="orange,jaune" saturation="pale" lightness="light">
-    <name-element name="beige" />
-  </rule>
-  <rule hue="red" saturation="normal" lightness="light">
-    <name-element name="rose" />
-  </rule>
-  <rule hue="red" saturation="bright,pale" lightness="light">
-    <name-element name="rose" />
-    <name-element name="tr(saturation)" />
-  </rule>
+    <rule hue="red" saturation="pale" lightness="light">
+        <result>
+            <name-element name="rose" />
+            <name-element name="tr(saturation)" />
+        </result>
+    </rule>
   <rule hue="orange,yellow" saturation="normal" lightness="dark">
     <name-element name="marron" />
   </rule>
   <rule hue="orange,yellow" saturation="bright,pale" lightness="dark">
-    <name-element name="marron" />
-    <name-element name="tr(saturation)" />
+      <result>
+        <name-element name="marron" />
+        <name-element name="tr(saturation)" />
+      </result>
   </rule>
   <rule hue="*" saturation="normal" lightness="normal">
-    <name-element name="tr(hue)" />
+      <result>
+        <name-element name="tr(hue)" />
+      </result>
   </rule>
-  <rule hue="*" saturation="normal" lightness="dark,light">
-    <name-element name="tr(hue)" />
-    <name-element name="tr(lightness)" />
+    <rule hue="red" saturation="normal,bright" lightness="dark~black">
+        <result>
+            <name-element name="bordeaux" />
+            <name-element name="foncé" />
+        </result>
+    </rule>
+    <rule hue="red" saturation="normal,bright" lightness="dark,light">
+        <result>
+            <name-element name="bordeaux" />
+        </result>
+    </rule>
+    <rule hue="*" saturation="normal,bright" lightness="dark,light">
+      <result>
+        <name-element name="tr(hue)" />
+        <name-element name="tr(lightness)" />
+      </result>
   </rule>
   <rule hue="*" saturation="bright,pale" lightness="normal">
-    <name-element name="tr(hue)" />
-    <name-element name="tr(saturation)" />
+      <result>
+        <name-element name="tr(hue)" />
+        <name-element name="tr(saturation)" />
+      </result>
   </rule>
+    <rule hue="*" saturation="pale" lightness="dark,light">
+        <result>
+            <name-element name="gris" />
+            <name-element name="tr(lightness)" />
+        </result>
+    </rule>
+
+    <!-- default rule -->
+    <rule hue="*" saturation="*" lightness="*">
+        <result>
+            <name-element name="tr(hue)" />
+        </result>
+    </rule>
 </color-names>
