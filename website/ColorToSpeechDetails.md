@@ -7,6 +7,8 @@ The color-to-speech application already contains some subparts.
 ### Temporary interface
 A basic and temporary interface to select colors in HSL space has been developped to test the other subparts.
 
+![Using standatd color names in French](screenshot/bifrost-1.png)
+
 ### RGB to HSL
 A very basic color RGB to HSL and HSL to RGB converter has been implemented.
 
