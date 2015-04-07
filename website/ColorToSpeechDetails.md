@@ -7,7 +7,7 @@ The color-to-speech application already contains some subparts.
 ### Temporary interface
 A basic and temporary interface to select colors in HSL space has been developped to test the other subparts.
 
-![Using standatd color names in French](screenshot/bifrost-1.png)
+![Using standard color names in French](screenshot/bifrost-2.png)
 
 ### RGB to HSL
 A very basic color RGB to HSL and HSL to RGB converter has been implemented.
@@ -29,3 +29,7 @@ Several version has been introduced:
 * [Standard color names in French](../app/src/main/res/xml-fr/standard_color_names.xml)
 
 The accuracy of the color naming for a camera-to-speech application does not need to be high, for at least two reasons. First, the incertainty of the acquisition is high, since we are not controlling the lighting. Second, thea person that needs a color to speech system is probably more motivated in the global idea of a color, and not about the very high level details of the color is looking to (see for example the amont of [shades of red defined in Wikipedia](http://en.wikipedia.org/wiki/Shades_of_red)). Finally, blind from birth persons (that are possible users of Bifröst) are not aware about all the small variations of colors...
+
+### Semantic color to speech
+
+The final color to speech is done using the default TextToSpeech engine available on the smartphone.
