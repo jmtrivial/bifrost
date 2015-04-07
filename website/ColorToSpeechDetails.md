@@ -28,3 +28,4 @@ Several version has been introduced:
 * [Standard color names in English](../app/src/main/res/xml/standard_color_names.xml)
 * [Standard color names in French](../app/src/main/res/xml-fr/standard_color_names.xml)
 
+The accuracy of the color naming for a camera-to-speech application does not need to be high, for at least two reasons. First, the incertainty of the acquisition is high, since we are not controlling the lighting. Second, thea person that needs a color to speech system is probably more motivated in the global idea of a color, and not about the very high level details of the color is looking to (see for example the amont of [shades of red defined in Wikipedia](http://en.wikipedia.org/wiki/Shades_of_red)). Finally, blind from birth persons (that are possible users of Bifröst) are not aware about all the small variations of colors...
