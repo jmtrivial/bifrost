@@ -47,7 +47,7 @@ public class FuzzyColorElement {
     }
     public String toString(Boolean values) {
         if (values)
-            return String.format( "%s (%.4f)", name, value);
+            return String.format( "%s (%.2f)", name, value);
         else
             return String.format( "%s", name);
     }

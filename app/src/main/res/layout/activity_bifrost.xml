@@ -1,16 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".Bifrost">
+    android:layout_height="match_parent" tools:context=".Bifrost"
+    android:orientation="vertical" android:background="#000000">
 
 
     <fragment android:name="info.jmfavreau.bifrost.ui.HSLColorPicker"
-        android:id="@+id/fullscreen_content"
+        android:id="@+id/hsl_color_picker"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/hsl_color_picker" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/speech_button"
+        android:id="@+id/speech_button"
+        android:layout_gravity="center_horizontal|bottom" />
 
 
-
-</FrameLayout>
+</LinearLayout>

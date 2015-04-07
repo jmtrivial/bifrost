@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Bifröst - A camera-to-speech system for Android
+  ~ Copyright (C) 2015 Jean-Marie Favreau <jeanmarie.favreau@free.fr>
+  ~
+  ~ This program is free software; you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation; either version 3 of the License, or
+  ~ any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program; if not, write to the Free Software Foundation,
+  ~ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+  -->
+
+<resources>
+    <string name="speech_button">Prononcer la couleur</string>
+    <string name="red_label">rouge</string>
+    <string name="green_label">vert</string>
+    <string name="blue_label">bleu</string>
+    <string name="hue_label">teinte</string>
+    <string name="saturation_label">saturation</string>
+    <string name="lightness_label">luminosité</string>
+    <string name="fuzzy_label">flou</string>
+    <string name="semantic_label">sémantique</string>
+</resources>

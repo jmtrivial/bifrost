@@ -32,7 +32,7 @@
         android:id="@+id/myTextColor"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:gravity="center"
         android:clickable="false"
         android:textColor="#ffffff"

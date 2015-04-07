@@ -26,6 +26,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,7 @@ public class HSLColorPicker extends Fragment implements View.OnClickListener {
     private EditText tv;
 
     private HSLColor c;
+
 
     public HSLColorPicker() {
         super();
@@ -90,10 +92,16 @@ public class HSLColorPicker extends Fragment implements View.OnClickListener {
         FuzzyColor f = new FuzzyColor(c);
         SemanticColor s = SemanticColorRules.toSemantic(f);
         f.defuzzificationUnary();
-        String text = String.format( "h: %.4f, s: %4f, l: %4f\nr: %.4f, g: %.4f, b: %.4f\nfuzzy: %s\nsemantic: %s",
-                c.getHue(), c.getSaturation(), c.getLightness(),
-                c.getRed(), c.getGreen(), c.getBlue(), f.toString(true), s.toString());
-        tv.setText(text.toString());
+        String text = String.format("<small>%s: %.4f, %s: %.4f, %s: %.4f<br />%s: %.2f, %s: %.2f, %s: %.2f<br />%s: %s</small><br /><strong>%s: %s</strong>",
+                getString(R.string.hue_label), c.getHue(),
+                getString(R.string.saturation_label), c.getSaturation(),
+                getString(R.string.lightness_label), c.getLightness(),
+                getString(R.string.red_label), c.getRed(),
+                getString(R.string.green_label), c.getGreen(),
+                getString(R.string.blue_label), c.getBlue(),
+                getString(R.string.fuzzy_label), f.toString(true),
+                getString(R.string.semantic_label), s.toString());
+        tv.setText(Html.fromHtml(text.toString()));
     }
 
 
@@ -126,4 +134,8 @@ public class HSLColorPicker extends Fragment implements View.OnClickListener {
         return c;
     }
 
+    public SemanticColor getSemanticColor() {
+        FuzzyColor f = new FuzzyColor(c);
+        return SemanticColorRules.toSemantic(f);
+    }
 }
