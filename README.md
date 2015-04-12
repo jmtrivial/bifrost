@@ -26,7 +26,7 @@ We motivate this project by the following points
 More details about the recent developments of the color-to-speech application on the dedicated webpage: [Color-to-Speech details](website/ColorToSpeechDetails.md)
 
 
-## Bifrost and bifrost-gears
+## Alternative applications: bifröst and bifröst-gears
 
 Bifrost will be distributed under two different applications:
 * *Bifrost*, the full application with the camera to speech pipeline
