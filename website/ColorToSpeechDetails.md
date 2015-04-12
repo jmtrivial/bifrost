@@ -1,13 +1,14 @@
 #Color-to-speech application details
 
-## Recently implemented
 
 The color-to-speech application already contains some subparts.
 
-### Temporary interface
-A basic and temporary interface to select colors in HSL space has been developped to test the other subparts.
+## Bifröst gears interface
+A basic interface to select colors in HSL space has been developped to test the other subparts, and distributed as a standelone application, named *Bifröst gears*.
 
 ![Using standard color names in French](screenshot/bifrost-2.png)
+
+## Bifröst core: library components
 
 ### RGB to HSL
 A very basic color RGB to HSL and HSL to RGB converter has been implemented.
