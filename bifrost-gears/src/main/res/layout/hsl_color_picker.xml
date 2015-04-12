@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <info.jmfavreau.bifrostgears.ui.HueBarSelector
+        android:id="@+id/myHueSelector"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp" />
+
+    <info.jmfavreau.bifrostgears.ui.SaturationBarSelector
+        android:id="@+id/mySaturationSelector"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp" />
+
+    <info.jmfavreau.bifrostgears.ui.LightnessBarSelector
+        android:id="@+id/myLightnessSelector"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp" />
+
+    <info.jmfavreau.bifrostgears.ui.ColorViewer
+        android:id="@+id/myColorViewer"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"></info.jmfavreau.bifrostgears.ui.ColorViewer>
+
+    <EditText
+        android:id="@+id/myTextColor"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:clickable="false"
+        android:textColor="#ffffff"
+        android:background="#000000"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+
+</LinearLayout>
