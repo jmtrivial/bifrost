@@ -25,6 +25,13 @@ We motivate this project by the following points
 
 More details about the recent developments of the color-to-speech application on the dedicated webpage: [Color-to-Speech details](website/ColorToSpeechDetails.md)
 
+
+## Bifrost and bifrost-gears
+
+Bifrost will be distributed under two different applications:
+* *Bifrost*, the full application with the camera to speech pipeline
+* *Bifrost gears*, an application that let you select an HSL color (color to speech)
+
 ## Future tools
 
 * luminosity-to-sound: using the camera, traduce the intensity of luminosity by generating high to low pitch sound 
