@@ -19,6 +19,7 @@
   -->
 
 <resources>
+    <string name="app_name">Bifrost gears</string>
     <string name="speech_button">Prononcer la couleur</string>
     <string name="red_label">rouge</string>
     <string name="green_label">vert</string>
