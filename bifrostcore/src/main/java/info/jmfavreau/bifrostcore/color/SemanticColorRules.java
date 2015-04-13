@@ -212,7 +212,13 @@ public class SemanticColorRules {
     }
 
 
-    private SemanticColor toSemanticInternal(FuzzyColor color) {
+
+
+    public static String translate(String value) {
+        return instance.translations.get(value);
+    }
+
+    public void setSemanticFromFuzzy(SemanticColor semanticColor, FuzzyColor color) {
         FuzzyColor realColor = color;
         if (preprocessing != null) {
             if (preprocessing.equals("defuzzification-unary")) {
@@ -221,17 +227,10 @@ public class SemanticColorRules {
         }
         for(SemanticRule r: rules) {
             if (r.accept(realColor)) {
-                return r.toSemanticColor(realColor);
+                r.toSemanticColor(semanticColor, realColor);
             }
         }
-        return SemanticColor.unknownColor();
-    }
+        semanticColor = SemanticColor.unknownColor();
 
-    public static SemanticColor toSemantic(FuzzyColor color) {
-        return instance.toSemanticInternal(color);
-    }
-
-    public static String translate(String value) {
-        return instance.translations.get(value);
     }
 }

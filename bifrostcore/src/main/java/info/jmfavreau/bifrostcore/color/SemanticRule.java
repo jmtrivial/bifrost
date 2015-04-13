@@ -88,7 +88,8 @@ public class SemanticRule {
         return false;
     }
 
-    SemanticColor toSemanticColor(FuzzyColor realColor) {
-        return new SemanticColor(semanticElements, realColor);
+
+    public void toSemanticColor(SemanticColor semanticColor, FuzzyColor realColor) {
+        semanticColor.setFromElements(semanticElements, realColor);
     }
 }

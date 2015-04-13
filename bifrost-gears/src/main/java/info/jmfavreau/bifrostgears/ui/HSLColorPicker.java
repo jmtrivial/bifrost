@@ -82,7 +82,7 @@ public class HSLColorPicker extends Fragment implements View.OnClickListener {
         cv.setBackgroundColor(c.getIntColor());
 
         FuzzyColor f = new FuzzyColor(c);
-        SemanticColor s = SemanticColorRules.toSemantic(f);
+        SemanticColor s = new SemanticColor(f);
         f.defuzzificationUnary();
         String text = String.format("<small>%s: %.4f, %s: %.4f, %s: %.4f<br />%s: %.2f, %s: %.2f, %s: %.2f<br />%s: %s</small><br /><strong>%s: %s</strong>",
                 getString(R.string.hue_label), c.getHue(),
@@ -128,6 +128,6 @@ public class HSLColorPicker extends Fragment implements View.OnClickListener {
 
     public SemanticColor getSemanticColor() {
         FuzzyColor f = new FuzzyColor(c);
-        return SemanticColorRules.toSemantic(f);
+        return new SemanticColor(f);
     }
 }

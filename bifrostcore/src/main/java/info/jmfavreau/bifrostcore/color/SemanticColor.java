@@ -30,11 +30,12 @@ public class SemanticColor {
 
     private SemanticColor() {
     }
-    public SemanticColor(List<SemanticElement> semanticElements, FuzzyColor realColor) {
-        elements = new ArrayList<>();
-        for(SemanticElement s: semanticElements)
-            elements.add(s.consolidate(realColor));
+
+
+    public SemanticColor(FuzzyColor color) {
+        SemanticColorRules.getInstance().setSemanticFromFuzzy(this, color);
     }
+
 
     public static SemanticColor unknownColor() {
         return new SemanticColor();
@@ -58,5 +59,11 @@ public class SemanticColor {
             }
             return result;
         }
+    }
+
+    public void setFromElements(List<SemanticElement> semanticElements, FuzzyColor realColor) {
+        elements = new ArrayList<>();
+        for(SemanticElement s: semanticElements)
+            elements.add(s.consolidate(realColor));
     }
 }
