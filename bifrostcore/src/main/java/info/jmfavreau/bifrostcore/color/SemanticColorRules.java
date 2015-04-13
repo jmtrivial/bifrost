@@ -228,6 +228,7 @@ public class SemanticColorRules {
         for(SemanticRule r: rules) {
             if (r.accept(realColor)) {
                 r.toSemanticColor(semanticColor, realColor);
+                break;
             }
         }
         semanticColor = SemanticColor.unknownColor();
