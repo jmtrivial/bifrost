@@ -34,7 +34,7 @@ import info.jmfavreau.bifrostcore.color.SemanticColorRules;
 import info.jmfavreau.bifrostgears.ui.HSLColorPicker;
 
 
-public class Bifrost extends FragmentActivity {
+public class BifrostGears extends FragmentActivity {
     TextToSpeech ttobj;
 
     @Override
