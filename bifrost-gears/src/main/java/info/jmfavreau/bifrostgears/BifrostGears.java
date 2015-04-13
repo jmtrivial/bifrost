@@ -42,7 +42,7 @@ public class BifrostGears extends FragmentActivity {
         super.onCreate(savedInstanceState);
         FuzzyColorRules.load(this);
         SemanticColorRules.load(this, "standard");
-        setContentView(R.layout.activity_bifrost);
+        setContentView(R.layout.activity_bifrostgears);
 
         Button button= (Button) findViewById(R.id.speech_button);
         button.setOnClickListener(new View.OnClickListener() {

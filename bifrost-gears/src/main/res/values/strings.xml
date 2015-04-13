@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bifrost gears</string>
+    <string name="app_name">Bifröst Gears</string>
     <string name="speech_button">Color to speech</string>
     <string name="red_label">red</string>
     <string name="green_label">green</string>

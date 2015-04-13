@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Bifröst - A camera-to-speech system for Android
   ~ Copyright (C) 2015 Jean-Marie Favreau <jeanmarie.favreau@free.fr>
@@ -19,14 +18,18 @@
   -->
 
 <resources>
-    <string name="app_name">Bifröst Gears</string>
-    <string name="speech_button">Prononcer la couleur</string>
-    <string name="red_label">rouge</string>
-    <string name="green_label">vert</string>
-    <string name="blue_label">bleu</string>
-    <string name="hue_label">teinte</string>
-    <string name="saturation_label">saturation</string>
-    <string name="lightness_label">luminosité</string>
-    <string name="fuzzy_label">flou</string>
-    <string name="semantic_label">sémantique</string>
+
+    <style name="FullscreenTheme" parent="android:Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
 </resources>
+

@@ -18,15 +18,25 @@
   ~ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
   -->
 
-<resources>
-    <string name="app_name">Bifröst Gears</string>
-    <string name="speech_button">Prononcer la couleur</string>
-    <string name="red_label">rouge</string>
-    <string name="green_label">vert</string>
-    <string name="blue_label">bleu</string>
-    <string name="hue_label">teinte</string>
-    <string name="saturation_label">saturation</string>
-    <string name="lightness_label">luminosité</string>
-    <string name="fuzzy_label">flou</string>
-    <string name="semantic_label">sémantique</string>
-</resources>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="info.jmfavreau.bifrost" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".BifrostActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
