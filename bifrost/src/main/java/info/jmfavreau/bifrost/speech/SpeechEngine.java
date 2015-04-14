@@ -70,7 +70,13 @@ public class SpeechEngine {
     void speak(String message) {
         previousMessage = message;
         previousTime = System.currentTimeMillis();
-        if (ttobj != null)
-            ttobj.speak(previousMessage, TextToSpeech.QUEUE_FLUSH, null, null);
+        if (ttobj != null) {
+            if (Build.VERSION.RELEASE.startsWith("5")) {
+                ttobj.speak(previousMessage, TextToSpeech.QUEUE_FLUSH, null, null);
+            }
+            else {
+                ttobj.speak(previousMessage, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        }
     }
 }
