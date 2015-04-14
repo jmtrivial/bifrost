@@ -32,16 +32,16 @@ public class SpeechEngine {
     String previousMessage = null;
     long previousTime;
 
-    TextToSpeech ttobj = null;
+    TextToSpeech textToSpeech = null;
     private int delay = 5;
 
     public SpeechEngine(Context appContext) {
-        ttobj = new TextToSpeech(appContext,
+        textToSpeech = new TextToSpeech(appContext,
                 new TextToSpeech.OnInitListener() {
                     @Override
                     public void onInit(int status) {
                         if(status != TextToSpeech.ERROR){
-                            ttobj.setLanguage(Locale.getDefault());
+                            textToSpeech.setLanguage(Locale.getDefault());
                         }
                     }
                 });
@@ -70,12 +70,12 @@ public class SpeechEngine {
     public void speak(String message) {
         previousMessage = message;
         previousTime = System.currentTimeMillis();
-        if (ttobj != null) {
+        if (textToSpeech != null) {
             if (Build.VERSION.RELEASE.startsWith("5")) {
-                ttobj.speak(previousMessage, TextToSpeech.QUEUE_FLUSH, null, null);
+                textToSpeech.speak(previousMessage, TextToSpeech.QUEUE_FLUSH, null, null);
             }
             else {
-                ttobj.speak(previousMessage, TextToSpeech.QUEUE_FLUSH, null);
+                textToSpeech.speak(previousMessage, TextToSpeech.QUEUE_FLUSH, null);
             }
         }
     }
