@@ -65,7 +65,7 @@ public class SemanticColorRules {
         rules = new ArrayList<>();
 
         Resources res = activity.getResources();
-        Log.w("file", idNspace + "_color_names.xml");
+
         String name = idNspace + "_color_names";
         int xmlID = res.getIdentifier(name, "xml", activity.getPackageName());
         if (xmlID == 0)
