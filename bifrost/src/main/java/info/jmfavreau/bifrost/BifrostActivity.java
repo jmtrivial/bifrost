@@ -102,7 +102,22 @@ public class BifrostActivity extends Activity {
         if (mCamera == null) {
             // Create an instance of Camera
             mCamera = getCameraInstance();
+            adjustCameraParameters();
+            mPreview.updateCamera(mCamera);
         }
+    }
+
+    private void adjustCameraParameters() {
+        // get Camera parameters
+        Camera.Parameters params = mCamera.getParameters();
+        // set the focus mode
+        params.setFocusMode(Camera.Parameters.FOCUS_MODE_INFINITY);
+        // set flash on
+        params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
+        // set white balance
+        params.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_SHADE);
+        // set Camera parameters
+        mCamera.setParameters(params);
     }
 
     /** Check if this device has a camera */
@@ -126,6 +141,7 @@ public class BifrostActivity extends Activity {
                 Camera.getCameraInfo(camIdx, cameraInfo);
                 if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
                     try {
+                        Log.d("bifrost", "found camera ");
                         return Camera.open(camIdx);
                     } catch (RuntimeException e) {
                         Log.e("bifrost", "Camera failed to open: " + e.getLocalizedMessage());

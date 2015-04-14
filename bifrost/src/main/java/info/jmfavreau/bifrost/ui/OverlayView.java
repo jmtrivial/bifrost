@@ -21,21 +21,57 @@ package info.jmfavreau.bifrost.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Button;
 
 /**
  * Created by Jean-Marie Favreau on 14/04/15.
  */
-public class OverlayView extends SurfaceView {
+public class OverlayView extends SurfaceView implements SurfaceHolder.Callback {
 
+    private GestureDetector gestureDetector;
     public OverlayView(Context context) {
         super(context);
-        // TODO
     }
 
     public OverlayView(Context context, AttributeSet attrs) {
+
         super(context, attrs);
+        gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+            public void onLongPress(MotionEvent e) {
+                Log.e("", "Longpress detected");
+            }
+            public boolean onSingleTapConfirmed(MotionEvent e) {
+                Log.e("", "tap detected");
+                return true;
+            }
+        });
     }
 
 
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return gestureDetector.onTouchEvent(event);
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+
+    }
 }

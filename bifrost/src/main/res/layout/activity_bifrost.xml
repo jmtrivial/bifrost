@@ -18,21 +18,23 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".Bifrost"
-    android:orientation="horizontal" android:background="#000000">
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent" tools:context=".Bifrost"
+    android:orientation="vertical" android:background="#000000">
 
 
-    <info.jmfavreau.bifrost.ui.OverlayView
-        android:id="@+id/overlay" android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-    </info.jmfavreau.bifrost.ui.OverlayView>
 
 
     <FrameLayout
         android:id="@+id/camera_preview"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        />
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <info.jmfavreau.bifrost.ui.OverlayView
+            android:id="@+id/overlay" android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        </info.jmfavreau.bifrost.ui.OverlayView>
+    </FrameLayout>
+
 </LinearLayout>
