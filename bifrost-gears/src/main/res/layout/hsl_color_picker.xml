@@ -26,7 +26,7 @@
         android:id="@+id/myColorViewer"
         android:layout_width="fill_parent"
         android:layout_weight="1"
-        android:layout_height="0dp"></info.jmfavreau.bifrostgears.ui.ColorViewer>
+        android:layout_height="0dp" />
 
     <EditText
         android:id="@+id/myTextColor"
@@ -39,6 +39,7 @@
         android:background="#000000"
         android:cursorVisible="false"
         android:focusable="false"
+        android:inputType="textMultiLine"
         android:focusableInTouchMode="false" />
 
 </LinearLayout>

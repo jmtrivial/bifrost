@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".Bifrost"
+    android:layout_height="match_parent" tools:context=".BifrostGears"
     android:orientation="vertical" android:background="#000000">
 
 
@@ -8,7 +8,7 @@
         android:id="@+id/hsl_color_picker"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         tools:layout="@layout/hsl_color_picker" />
 
     <Button
