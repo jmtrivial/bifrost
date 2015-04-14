@@ -35,7 +35,7 @@ public class SpeechEngine {
     TextToSpeech ttobj = null;
     private int delay = 5;
 
-    SpeechEngine(Context appContext) {
+    public SpeechEngine(Context appContext) {
         ttobj = new TextToSpeech(appContext,
                 new TextToSpeech.OnInitListener() {
                     @Override
@@ -47,7 +47,7 @@ public class SpeechEngine {
                 });
     }
 
-    void replay() {
+    public void replay() {
         if (previousMessage != null) {
             long now =  System.currentTimeMillis();
             if (now - previousTime > delay * 60000) { // n minutes after, it's too late
@@ -59,15 +59,15 @@ public class SpeechEngine {
         }
     }
 
-    void setDelay(int nbMin) {
+    public void setDelay(int nbMin) {
         delay = nbMin;
     }
 
-    int getDelay() {
+    public int getDelay() {
         return delay;
     }
 
-    void speak(String message) {
+    public void speak(String message) {
         previousMessage = message;
         previousTime = System.currentTimeMillis();
         if (ttobj != null) {

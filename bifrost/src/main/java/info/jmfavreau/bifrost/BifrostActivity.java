@@ -19,6 +19,7 @@
 
 package info.jmfavreau.bifrost;
 
+import info.jmfavreau.bifrost.speech.SpeechEngine;
 import info.jmfavreau.bifrostcore.color.FuzzyColorRules;
 import info.jmfavreau.bifrostcore.color.SemanticColorRules;
 
@@ -28,6 +29,7 @@ import android.os.Bundle;
 
 public class BifrostActivity extends Activity {
 
+    SpeechEngine speechEngine = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class BifrostActivity extends Activity {
         SemanticColorRules.load(this, "standard");
         setContentView(R.layout.activity_bifrost);
 
+        speechEngine = new SpeechEngine(getApplicationContext());
 
     }
 }
