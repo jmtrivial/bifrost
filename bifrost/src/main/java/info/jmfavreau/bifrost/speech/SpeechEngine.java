@@ -20,6 +20,7 @@
 package info.jmfavreau.bifrost.speech;
 
 import android.content.Context;
+import android.os.Build;
 import android.speech.tts.TextToSpeech;
 
 import java.util.Locale;
@@ -32,6 +33,7 @@ public class SpeechEngine {
     long previousTime;
 
     TextToSpeech ttobj = null;
+    private int delay = 5;
 
     SpeechEngine(Context appContext) {
         ttobj = new TextToSpeech(appContext,
@@ -48,7 +50,7 @@ public class SpeechEngine {
     void replay() {
         if (previousMessage != null) {
             long now =  System.currentTimeMillis();
-            if (now - previousTime > 300000) { // 5 minutes after, it's too late
+            if (now - previousTime > delay * 60000) { // n minutes after, it's too late
                 previousMessage = null;
             }
             else {
