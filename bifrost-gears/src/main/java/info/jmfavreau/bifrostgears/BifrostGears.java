@@ -19,6 +19,7 @@
 
 package info.jmfavreau.bifrostgears;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.FragmentActivity;
@@ -35,7 +36,7 @@ import info.jmfavreau.bifrostgears.ui.HSLColorPicker;
 
 
 public class BifrostGears extends FragmentActivity {
-    TextToSpeech ttobj;
+    TextToSpeech textToSpeech;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,12 +53,12 @@ public class BifrostGears extends FragmentActivity {
             }
         });
 
-        ttobj = new TextToSpeech(getApplicationContext(),
+        textToSpeech = new TextToSpeech(getApplicationContext(),
                 new TextToSpeech.OnInitListener() {
                     @Override
                     public void onInit(int status) {
                         if(status != TextToSpeech.ERROR){
-                            ttobj.setLanguage(Locale.getDefault());
+                            textToSpeech.setLanguage(Locale.getDefault());
                         }
                     }
                 });
@@ -67,7 +68,12 @@ public class BifrostGears extends FragmentActivity {
     private void DoIt(View v) {
         HSLColorPicker cp = (HSLColorPicker) getFragmentManager().findFragmentById(R.id.hsl_color_picker);
         SemanticColor c = cp.getSemanticColor();
-        ttobj.speak(c.toString(), TextToSpeech.QUEUE_FLUSH, null, null);
+        if (Build.VERSION.RELEASE.startsWith("5")) {
+            textToSpeech.speak(c.toString(), TextToSpeech.QUEUE_FLUSH, null, null);
+        }
+        else {
+            textToSpeech.speak(c.toString(), TextToSpeech.QUEUE_FLUSH, null);
+        }
     }
 
 }
