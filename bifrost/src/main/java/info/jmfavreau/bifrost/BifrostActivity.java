@@ -20,16 +20,37 @@
 package info.jmfavreau.bifrost;
 
 import info.jmfavreau.bifrost.speech.SpeechEngine;
+import info.jmfavreau.bifrost.ui.CameraPreview;
+import info.jmfavreau.bifrost.ui.OverlayView;
 import info.jmfavreau.bifrostcore.color.FuzzyColorRules;
 import info.jmfavreau.bifrostcore.color.SemanticColorRules;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.PixelFormat;
+import android.hardware.Camera;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.FrameLayout;
+
 
 
 public class BifrostActivity extends Activity {
 
     SpeechEngine speechEngine = null;
+    Camera mCamera = null;
+    CameraPreview mPreview;
+    OverlayView mView;
+
+    private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
+
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+            // TODO: send the resulting image to the speech engine
+        }
+    };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,5 +60,85 @@ public class BifrostActivity extends Activity {
 
         speechEngine = new SpeechEngine(getApplicationContext());
 
+        if (checkCameraHardware(this)) {
+            // create overlay view
+            mView = (OverlayView)this.findViewById(R.id.overlay);
+            mView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+
+            // Create an instance of Camera
+            mCamera = getCameraInstance();
+
+            // Create our Preview view and set it as the content of our activity.
+            mPreview = new CameraPreview(this, mCamera);
+            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+            preview.addView(mPreview);
+
+
+        }
+        else {
+            // TODO: error: no camera available
+            Log.w("bifrost", "no camera available");
+        }
+
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass method first
+
+        // Release the Camera because we don't need it when paused
+        // and other activities might need to use it.
+        if (mCamera != null) {
+            mCamera.release();
+            mCamera = null;
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+
+        // Get the Camera instance as the activity achieves full user focus
+        if (mCamera == null) {
+            // Create an instance of Camera
+            mCamera = getCameraInstance();
+        }
+    }
+
+    /** Check if this device has a camera */
+    private boolean checkCameraHardware(Context context) {
+        if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+            // this device has a camera
+            return true;
+        } else {
+            // no camera on this device
+            return false;
+        }
+    }
+
+    /** A safe way to get an instance of the Camera object. */
+    public static Camera getCameraInstance(){
+        try {
+
+            Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+            int cameraCount = Camera.getNumberOfCameras();
+            for (int camIdx = 0; camIdx < cameraCount; camIdx++) {
+                Camera.getCameraInfo(camIdx, cameraInfo);
+                if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_BACK) {
+                    try {
+                        return Camera.open(camIdx);
+                    } catch (RuntimeException e) {
+                        Log.e("bifrost", "Camera failed to open: " + e.getLocalizedMessage());
+                    }
+                }
+            }
+
+        }
+        catch (Exception e){
+            // Camera is not available (in use or does not exist)
+        }
+        return null; // returns null if camera is unavailable
+    }
+
+
 }
