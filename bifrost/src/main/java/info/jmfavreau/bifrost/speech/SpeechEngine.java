@@ -59,6 +59,14 @@ public class SpeechEngine {
         }
     }
 
+    void setDelay(int nbMin) {
+        delay = nbMin;
+    }
+
+    int getDelay() {
+        return delay;
+    }
+
     void speak(String message) {
         previousMessage = message;
         previousTime = System.currentTimeMillis();
