@@ -20,6 +20,7 @@
 package info.jmfavreau.bifrost.ui;
 
 import android.content.Context;
+import android.hardware.Camera;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -28,12 +29,16 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Button;
 
+import info.jmfavreau.bifrost.processing.CameraToSpeech;
+
 /**
  * Created by Jean-Marie Favreau on 14/04/15.
  */
 public class OverlayView extends SurfaceView implements SurfaceHolder.Callback {
 
     private GestureDetector gestureDetector;
+    private CameraToSpeech cameraToSpeech;
+
     public OverlayView(Context context) {
         super(context);
     }
@@ -42,11 +47,18 @@ public class OverlayView extends SurfaceView implements SurfaceHolder.Callback {
 
         super(context, attrs);
         gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+            @Override
             public void onLongPress(MotionEvent e) {
                 Log.e("", "Longpress detected");
             }
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+            @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
                 Log.e("", "tap detected");
+                cameraToSpeech.run();
                 return true;
             }
         });
@@ -74,4 +86,10 @@ public class OverlayView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceDestroyed(SurfaceHolder holder) {
 
     }
+
+
+    public void setCameraToSpeech(CameraToSpeech cameraToSpeech) {
+        this.cameraToSpeech = cameraToSpeech;
+    }
+
 }

@@ -21,6 +21,7 @@ package info.jmfavreau.bifrost.processing;
 
 import android.content.Context;
 import android.hardware.Camera;
+import android.util.Log;
 
 import info.jmfavreau.bifrost.speech.SpeechEngine;
 
@@ -29,13 +30,23 @@ import info.jmfavreau.bifrost.speech.SpeechEngine;
  */
 public class CameraToSpeech {
     SpeechEngine speechEngine = null;
+    private Camera camera;
 
     public CameraToSpeech(Context context) {
         speechEngine = new SpeechEngine(context);
     }
 
+    private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
-    public void run(byte[] data, Camera camera) {
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+            processImage(data, camera);
+            camera.startPreview();
+        }
+    };
+
+    private void processImage(byte[] data, Camera camera) {
+        Log.d("bifrost", "camera to speech");
         // extract a series of colors from the image
         // TODO
 
@@ -44,5 +55,15 @@ public class CameraToSpeech {
 
         // speak
         // TODO
+    }
+
+
+    public void run() {
+        camera.takePicture(null, mPicture, null, null);
+        // TODO: restart surface ?
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
     }
 }

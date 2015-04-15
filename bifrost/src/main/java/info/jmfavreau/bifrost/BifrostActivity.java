@@ -41,17 +41,10 @@ public class BifrostActivity extends Activity {
 
     CameraToSpeech cameraToSpeech = null;
     Camera mCamera = null;
-    CameraPreview mPreview;
-    OverlayView mView;
+    CameraPreview mPreview = null;
+    OverlayView mView = null;
 
-    private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
-        @Override
-        public void onPictureTaken(byte[] data, Camera camera) {
-            cameraToSpeech.run(data, camera);
-            // TODO: send the resulting image to the speech engine
-        }
-    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,9 +59,13 @@ public class BifrostActivity extends Activity {
             // create overlay view
             mView = (OverlayView)this.findViewById(R.id.overlay);
             mView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+            mView.setCameraToSpeech(cameraToSpeech);
 
             // Create an instance of Camera
             mCamera = getCameraInstance();
+
+            // add this camera to the mView
+            cameraToSpeech.setCamera(mCamera);
 
             // Create our Preview view and set it as the content of our activity.
             mPreview = new CameraPreview(this, mCamera);
@@ -106,6 +103,7 @@ public class BifrostActivity extends Activity {
             mCamera = getCameraInstance();
             adjustCameraParameters();
             mPreview.updateCamera(mCamera);
+            cameraToSpeech.setCamera(mCamera);
         }
     }
 
