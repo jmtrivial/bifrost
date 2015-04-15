@@ -1,2 +1,2 @@
-include ':bifrost-gears', ':bifrostcore', ':bifrost'
+include ':bifrost-gears', ':bifrostcore', ':bifrost', ':opencv'
 
