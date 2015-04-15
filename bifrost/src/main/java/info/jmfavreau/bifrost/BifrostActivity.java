@@ -19,6 +19,7 @@
 
 package info.jmfavreau.bifrost;
 
+import info.jmfavreau.bifrost.processing.CameraToSpeech;
 import info.jmfavreau.bifrost.speech.SpeechEngine;
 import info.jmfavreau.bifrost.ui.CameraPreview;
 import info.jmfavreau.bifrost.ui.OverlayView;
@@ -38,7 +39,7 @@ import android.widget.FrameLayout;
 
 public class BifrostActivity extends Activity {
 
-    SpeechEngine speechEngine = null;
+    CameraToSpeech cameraToSpeech = null;
     Camera mCamera = null;
     CameraPreview mPreview;
     OverlayView mView;
@@ -47,6 +48,7 @@ public class BifrostActivity extends Activity {
 
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
+            cameraToSpeech.run(data, camera);
             // TODO: send the resulting image to the speech engine
         }
     };
@@ -58,7 +60,7 @@ public class BifrostActivity extends Activity {
         SemanticColorRules.load(this, "standard");
         setContentView(R.layout.activity_bifrost);
 
-        speechEngine = new SpeechEngine(getApplicationContext());
+        cameraToSpeech = new CameraToSpeech(getApplicationContext());
 
         if (checkCameraHardware(this)) {
             // create overlay view
