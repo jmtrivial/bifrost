@@ -20,6 +20,7 @@
 package info.jmfavreau.bifrostcore.imageprocessing;
 
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.util.Log;
 
 import junit.framework.Assert;
@@ -34,15 +35,35 @@ import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
+import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by Jean-Marie Favreau on 16/04/15.
  */
 public class ImageToColor {
 
+    private void saveImage(Mat mat) {
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyAppDir");
+
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                Log.e("bifrostcore", "failed to create directory");
+                return;
+            }
+        }
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "bifrostcore_" + timeStamp + ".png");
+        Log.w("bifrostcore", "save image to " + mediaFile.toString());
+        Highgui.imwrite(mediaFile.toString(), mat);
+    }
 
     public Scalar process(Bitmap bmp) {
         // convert the image to OpenCV format
@@ -66,9 +87,21 @@ public class ImageToColor {
         // extract main region using histogram
         Mat main_region = extract_main_region(hsv);
 
+        // threshold to preserve only the most significant regions
+        Mat main_region_threshold = threshold_mask(main_region);
+        saveImage(main_region_threshold);
+
         Log.d("bifrostcore", "return mean value");
         // return the mean value
-        return Core.mean(original, main_region);
+        return Core.mean(original, main_region_threshold);
+    }
+
+    private Mat threshold_mask(Mat main_region) {
+        Mat result = main_region.clone();
+
+        Imgproc.threshold(main_region, result, Core.mean(main_region).val[0], 255, Imgproc.THRESH_TOZERO);
+
+        return result;
     }
 
     private Mat toHSV(Mat img) {
@@ -98,8 +131,7 @@ public class ImageToColor {
     }
 
     private Mat smooth_image(Mat img) {
-        Mat smoothed = new Mat();
-        Imgproc.cvtColor(img, smoothed, Imgproc.COLOR_RGBA2RGB, 0);
+        Mat smoothed = img.clone();
         int diam = 20; // TODO: adjust this value depending of the image size
         int std_dev_color = 80; // TODO: fix these values
         int std_dev_space = 80;
