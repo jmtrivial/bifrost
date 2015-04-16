@@ -76,6 +76,9 @@ public class ImageToColor {
         Imgproc.cvtColor(original_alpha, original, Imgproc.COLOR_RGBA2RGB, 0);
         Log.d("bifrostcore", "image size: " + String.valueOf(original.total()));
 
+        // compute an ROI
+        Mat roi = compute_roi(original);
+
         Log.d("bifrostcore", "smooth image");
         // smooth the image
         Mat smoothed = smooth_image(original);
@@ -85,7 +88,7 @@ public class ImageToColor {
 
         Log.d("bifrostcore", "extract main region");
         // extract main region using histogram
-        Mat main_region = extract_main_region(hsv);
+        Mat main_region = extract_main_region(hsv, roi);
 
         // threshold to preserve only the most significant regions
         Mat main_region_threshold = threshold_mask(main_region);
@@ -94,6 +97,19 @@ public class ImageToColor {
         Log.d("bifrostcore", "return mean value");
         // return the mean value
         return Core.mean(original, main_region_threshold);
+    }
+
+    private Mat compute_roi(Mat original) {
+        Mat roi = new Mat();
+        Imgproc.cvtColor(original, roi, Imgproc.COLOR_BGR2GRAY, 0);
+        roi.setTo(new Scalar(0, 0, 0));
+        int x = original.width();
+        int y = original.height();
+        int cx = x / 2;
+        int cy = y / 2;
+        int r = Math.min(cx, cy) * 2 / 3;
+        Core.circle(roi, new Point(cx, cy), r, new Scalar(255, 255, 255), -1, 8, 0);
+        return roi;
     }
 
     private Mat threshold_mask(Mat main_region) {
@@ -110,7 +126,7 @@ public class ImageToColor {
         return hsv;
     }
 
-    private Mat extract_main_region(Mat img) {
+    private Mat extract_main_region(Mat img, Mat roi) {
         Mat hist = new Mat();
         int h_bins = 30;
         int s_bins = 32;
@@ -119,7 +135,7 @@ public class ImageToColor {
         MatOfFloat mRanges = new MatOfFloat(0, 179, 0, 255);
         MatOfInt mChannels = new MatOfInt(0, 1);
 
-        Imgproc.calcHist(Arrays.asList(img), mChannels, new Mat(), hist, mHistSize, mRanges, false);
+        Imgproc.calcHist(Arrays.asList(img), mChannels, roi, hist, mHistSize, mRanges, false);
 
         Core.normalize(hist, hist, 0, 255, Core.NORM_MINMAX, -1, new Mat());
 
@@ -127,7 +143,7 @@ public class ImageToColor {
         Imgproc.calcBackProject(Arrays.asList(img), mChannels, hist, backproj, mRanges, 1);
 
         Log.w("bifrostcore", "Number of pixels in the biggest region: " + String.valueOf(Core.countNonZero(backproj)));
-        return backproj;
+        return backproj.mul(roi);
     }
 
     private Mat smooth_image(Mat img) {
