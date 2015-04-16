@@ -21,10 +21,19 @@ package info.jmfavreau.bifrostcore.color;
 
 import android.graphics.Color;
 
+import org.opencv.core.Scalar;
+
 /**
  * Created by Jean-Marie Favreau on 23/02/15.
  */
 public class HSLColor {
+    public HSLColor(Scalar color) {
+        r = color.val[0] / 255;
+        g = color.val[1] / 255;
+        b = color.val[2] / 255;
+        initHSLValuesFromRGB(r, g, b);
+    }
+
     public double getHue() {
         return h;
     }

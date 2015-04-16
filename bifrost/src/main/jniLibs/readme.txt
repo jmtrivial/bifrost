@@ -1,0 +1,1 @@
+Add here directories for each architecture with the so files from OpenCV-SDK (libopencv_java.so, ...)

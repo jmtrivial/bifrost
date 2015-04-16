@@ -35,6 +35,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
 
+import org.opencv.android.OpenCVLoader;
 
 
 public class BifrostActivity extends Activity {
@@ -45,6 +46,9 @@ public class BifrostActivity extends Activity {
     OverlayView mView = null;
 
 
+    static {
+        System.loadLibrary("opencv_java");
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -115,7 +119,9 @@ public class BifrostActivity extends Activity {
         // set flash on
         params.setFlashMode(Camera.Parameters.FLASH_MODE_ON);
         // set white balance
-        params.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_SHADE);
+        params.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_CLOUDY_DAYLIGHT);
+        // set jpg quality
+        params.setJpegQuality(75);
         // set Camera parameters
         mCamera.setParameters(params);
     }

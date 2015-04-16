@@ -21,6 +21,8 @@ package info.jmfavreau.bifrostcore.color;
 
 import android.content.res.Resources;
 
+import org.opencv.core.Scalar;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -43,6 +45,11 @@ public class FuzzyColor {
 
     public FuzzyColor(HSLColor c) throws Resources.NotFoundException {
         color = c;
+        setFuzzyLabels();
+    }
+
+    public FuzzyColor(Scalar color) {
+        this.color = new HSLColor(color);
         setFuzzyLabels();
     }
 
