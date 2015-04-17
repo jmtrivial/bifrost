@@ -37,6 +37,8 @@ import android.widget.FrameLayout;
 
 import org.opencv.android.OpenCVLoader;
 
+import java.util.List;
+
 
 public class BifrostActivity extends Activity {
 
@@ -49,6 +51,9 @@ public class BifrostActivity extends Activity {
     static {
         System.loadLibrary("opencv_java");
     }
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,7 @@ public class BifrostActivity extends Activity {
 
             // Create an instance of Camera
             mCamera = getCameraInstance();
+            adjustCameraParameters();
 
             // add this camera to the mView
             cameraToSpeech.setCamera(mCamera);
@@ -80,7 +86,7 @@ public class BifrostActivity extends Activity {
         }
         else {
             // TODO: error: no camera available
-            Log.w("bifrost", "no camera available");
+            Log.e("bifrost", "no camera available");
         }
 
     }
@@ -110,6 +116,8 @@ public class BifrostActivity extends Activity {
             cameraToSpeech.setCamera(mCamera);
         }
     }
+
+
 
     private void adjustCameraParameters() {
         // get Camera parameters
