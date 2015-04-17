@@ -47,14 +47,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     public CameraPreview(Context context) {
         super(context);
         this.context = context;
-        setOrientation();
 
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.
         mHolder = getHolder();
-        mHolder.addCallback(this);
         // deprecated setting, but required on Android versions prior to 3.0
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        mHolder.addCallback(this);
     }
 
     public CameraPreview(Context context, Camera camera) {
@@ -73,6 +72,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
     public void surfaceCreated(SurfaceHolder holder) {
         Log.d("bifrost", "surface created");
+        setOrientation();
         // The Surface has been created, now tell the camera where to draw the preview.
         try {
             mCamera.setPreviewDisplay(holder);
@@ -189,7 +189,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             else if (orientation == Surface.ROTATION_90)
                 mCamera.setDisplayOrientation(0);
             else if (orientation == Surface.ROTATION_180)
-                mCamera.setDisplayOrientation(0);
+                mCamera.setDisplayOrientation(270);
             else if (orientation == Surface.ROTATION_270)
                 mCamera.setDisplayOrientation(180);
             mCamera.setPreviewDisplay(mHolder);
