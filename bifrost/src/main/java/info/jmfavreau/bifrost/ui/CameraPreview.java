@@ -61,6 +61,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         this.context = context;
         setOrientation();
         mCamera = camera;
+        mSupportedPreviewSizes = mCamera.getParameters().getSupportedPreviewSizes();
 
         // Install a SurfaceHolder.Callback so we get notified when the
         // underlying surface is created and destroyed.

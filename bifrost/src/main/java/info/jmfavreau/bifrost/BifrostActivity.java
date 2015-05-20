@@ -20,7 +20,6 @@
 package info.jmfavreau.bifrost;
 
 import info.jmfavreau.bifrost.processing.CameraToSpeech;
-import info.jmfavreau.bifrost.speech.SpeechEngine;
 import info.jmfavreau.bifrost.ui.CameraPreview;
 import info.jmfavreau.bifrost.ui.OverlayView;
 import info.jmfavreau.bifrostcore.color.FuzzyColorRules;
@@ -162,7 +161,6 @@ public class BifrostActivity extends Activity {
                     }
                 }
             }
-
         }
         catch (Exception e){
             // Camera is not available (in use or does not exist)
